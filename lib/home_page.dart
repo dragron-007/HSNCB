@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
             Container(
               height: 200,
               width: double.infinity,
-              color: Colors.grey,
+              color: Colors.indigo,
               child: Center(
                 child: Text(
                   'Image/Video will be displayed here',
@@ -25,8 +25,8 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue, // Use your desired button color
-                onPrimary: Colors.white, // Use your desired text color
+                primary: Colors.teal,
+                onPrimary: Colors.white,
               ),
               child: Text('Join the community'),
               onPressed: () {
@@ -41,16 +41,19 @@ class HomeScreen extends StatelessWidget {
                   context,
                   Icons.video_library,
                   'Watch inspiring videos',
+                  color: Colors.orange,
                 ),
                 buildFeatureBox(
                   context,
                   Icons.book,
                   'Read real stories',
+                  color: Colors.purple,
                 ),
                 buildFeatureBox(
                   context,
                   Icons.gamepad,
                   'Play fun games',
+                  color: Colors.green,
                 ),
               ],
             ),
@@ -62,16 +65,19 @@ class HomeScreen extends StatelessWidget {
                   context,
                   Icons.quiz,
                   'Take the quiz',
+                  color: Colors.red,
                 ),
                 buildFeatureBox(
                   context,
                   Icons.lightbulb,
                   'Get useful tips',
+                  color: Colors.blue,
                 ),
                 buildFeatureBox(
                   context,
                   Icons.star,
                   'Accept the challenge',
+                  color: Colors.amber,
                 ),
               ],
             ),
@@ -80,7 +86,8 @@ class HomeScreen extends StatelessWidget {
               height: 200,
               width: double.infinity,
               child: Card(
-                elevation: 4, // Add elevation for a card-like effect
+                elevation: 4,
+                color: Colors.grey[200],
                 child: Padding(
                   padding: EdgeInsets.all(16),
                   child: Column(
@@ -91,11 +98,15 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                       SizedBox(height: 10),
                       Text(
                         'Join the community of thousands of young people who are making positive choices and living healthy lives.',
+                        style: TextStyle(
+                          color: Colors.black87,
+                        ),
                       ),
                       SizedBox(height: 10),
                       Row(
@@ -117,7 +128,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget buildFeatureBox(BuildContext context, IconData icon, String label) {
+  Widget buildFeatureBox(
+      BuildContext context,
+      IconData icon,
+      String label, {
+        required Color color, // Make 'color' a required parameter
+      }) {
     return InkWell(
       onTap: () {
         // Add the functionality you want for each feature box
@@ -128,19 +144,24 @@ class HomeScreen extends StatelessWidget {
             height: 64,
             width: 64,
             decoration: BoxDecoration(
-              color: Colors.blue, // Use your desired box color
-              borderRadius: BorderRadius.circular(8), // Add rounded corners
+              color: color,
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Center(
               child: Icon(
                 icon,
-                color: Colors.white, // Use your desired icon color
+                color: Colors.white,
                 size: 32,
               ),
             ),
           ),
           SizedBox(height: 8),
-          Text(label),
+          Text(
+            label,
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
         ],
       ),
     );
@@ -154,9 +175,15 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
-        Text(label),
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.black54,
+          ),
+        ),
       ],
     );
   }
