@@ -12,8 +12,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
   void initState() {
     super.initState();
     // Add two default posts when the screen is initialized
-    _addPostLocally('User1', 'This is the first post content.');
-    _addPostLocally('User2', 'This is the second post content.');
+    _addPostLocally('Haryana Police ', 'This is the first post content.');
+    _addPostLocally('NGO', 'This is the second post content.');
   }
 
   @override
