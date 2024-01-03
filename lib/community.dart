@@ -9,10 +9,19 @@ class _CommunityScreenState extends State<CommunityScreen> {
   List<Post> communityPosts = [];
 
   @override
+  void initState() {
+    super.initState();
+    // Add two default posts when the screen is initialized
+    _addPostLocally('User1', 'This is the first post content.');
+    _addPostLocally('User2', 'This is the second post content.');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Community'),
+        backgroundColor: Color(0xFF00796B), // Dark Teal
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -26,7 +35,15 @@ class _CommunityScreenState extends State<CommunityScreen> {
               // Show a dialog to enter post content
               _showCreatePostDialog();
             },
-            child: Text('Create Post'),
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFF004D40), // Slightly darker shade of Dark Teal
+            ),
+            child: Text(
+              'Create Post',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
@@ -91,11 +108,28 @@ class _CommunityScreenState extends State<CommunityScreen> {
       builder: (context) {
         return AlertDialog(
           title: Text('Create a New Post'),
+          backgroundColor: Color(0xFF00796B), // Dark Teal
           content: TextField(
             controller: _postContentController,
             maxLines: 4,
+            style: TextStyle(
+              color: Colors.white,
+            ),
             decoration: InputDecoration(
               hintText: 'Enter your post content...',
+              hintStyle: TextStyle(
+                color: Colors.white54,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.white,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
           actions: [
@@ -103,15 +137,31 @@ class _CommunityScreenState extends State<CommunityScreen> {
               onPressed: () {
                 Navigator.pop(context); // Close the dialog
               },
-              child: Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
                 // Add the new post with user-entered content to the list
-                _addPostLocally(_postContentController.text);
+                _addPostLocally(
+                  'NewUser', // Change to the current user or fetch from authentication
+                  _postContentController.text,
+                );
                 Navigator.pop(context); // Close the dialog
               },
-              child: Text('Post'),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF004D40), // Slightly darker shade of Dark Teal
+              ),
+              child: Text(
+                'Post',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         );
@@ -119,10 +169,10 @@ class _CommunityScreenState extends State<CommunityScreen> {
     );
   }
 
-  void _addPostLocally(String content) {
+  void _addPostLocally(String username, String content) {
     // Dummy data for the new post
     Post newPost = Post(
-      username: 'NewUser',
+      username: username,
       content: content,
       likes: 0,
       comments: 0,
