@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                 buildFeatureBox(
                   context,
                   Icons.book,
-                  'Read real stories',
+                  'Read Stories',
                   color: Colors.purple,
                 ),
                 buildFeatureBox(
