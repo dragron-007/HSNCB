@@ -18,60 +18,88 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
+        backgroundColor: Colors.deepOrange, // Improved Deep Orange color
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
-          ListTile(
-            title: Text('Account Information'),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Name: $userName'),
-                Text('Email: $userEmail'),
-              ],
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.deepOrange, width: 2.0),
+              borderRadius: BorderRadius.circular(8.0),
             ),
-            leading: Icon(Icons.account_circle),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AccountInfoScreen()),
-              );
-            },
-          ),
-          Divider(),
-          ListTile(
-            title: Text('Language'),
-            subtitle: DropdownButton(
-              value: selectedLanguage,
-              items: supportedLanguages.map((lang) {
-                return DropdownMenuItem(
-                  value: lang,
-                  child: Text(lang),
+            child: ListTile(
+              title: Text(
+                'Account Information',
+                style: TextStyle(color: Colors.deepOrange),
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Name: $userName'),
+                  Text('Email: $userEmail'),
+                ],
+              ),
+              leading: Icon(Icons.account_circle, color: Colors.deepOrange),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AccountInfoScreen()),
                 );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedLanguage = value.toString();
-                  // You can add logic here to change the app's language
-                });
               },
             ),
-            leading: Icon(Icons.language),
           ),
           Divider(),
-          ListTile(
-            title: Text('Dark Mode'),
-            trailing: Switch(
-              value: darkMode,
-              onChanged: (value) {
-                setState(() {
-                  darkMode = value;
-                  // You can add logic here to toggle dark mode
-                });
-              },
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.deepOrange, width: 2.0),
+              borderRadius: BorderRadius.circular(8.0),
             ),
-            leading: Icon(Icons.brightness_4),
+            child: ListTile(
+              title: Text(
+                'Language',
+                style: TextStyle(color: Colors.deepOrange),
+              ),
+              subtitle: DropdownButton(
+                value: selectedLanguage,
+                items: supportedLanguages.map((lang) {
+                  return DropdownMenuItem(
+                    value: lang,
+                    child: Text(lang),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedLanguage = value.toString();
+                    // You can add logic here to change the app's language
+                  });
+                },
+              ),
+              leading: Icon(Icons.language, color: Colors.deepOrange),
+            ),
+          ),
+          Divider(),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.deepOrange, width: 2.0),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: ListTile(
+              title: Text(
+                'Dark Mode',
+                style: TextStyle(color: Colors.deepOrange),
+              ),
+              trailing: Switch(
+                value: darkMode,
+                onChanged: (value) {
+                  setState(() {
+                    darkMode = value;
+                    // You can add logic here to toggle dark mode
+                  });
+                },
+              ),
+              leading: Icon(Icons.brightness_4, color: Colors.deepOrange),
+            ),
           ),
           // ... (other list tiles remain the same)
         ],
